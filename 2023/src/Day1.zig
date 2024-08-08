@@ -22,15 +22,15 @@ pub fn helper(line: []u8, part2: bool) u32 {
     var sum: u32 = 0;
     var first_digit: ?u8 = null;
     var last_digit: ?u8 = null;
-    const numbers = [9][]const u8{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    const numbers = [9][]const u8{ "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
     // find first digit
     for (line, 0..) |c, i| {
         if (std.ascii.isDigit(c)) {
             first_digit = @intCast(c - '0');
-        } 
+        }
         if (part2) {
             for (numbers, 1..) |num_str, num_idx| {
-                if (std.mem.startsWith(u8, line[i..], num_str)){
+                if (std.mem.startsWith(u8, line[i..], num_str)) {
                     first_digit = @intCast(num_idx);
                     break;
                 }
@@ -49,11 +49,11 @@ pub fn helper(line: []u8, part2: bool) u32 {
         const c = line[it];
         if (std.ascii.isDigit(c)) {
             last_digit = @intCast(c - '0');
-        } 
+        }
         if (part2) {
             for (numbers, 1..) |num_str, num_idx| {
                 if (it < num_str.len) continue;
-                if (std.mem.startsWith(u8, line[(it-num_str.len)..], num_str)){
+                if (std.mem.startsWith(u8, line[(it - num_str.len)..], num_str)) {
                     last_digit = @intCast(num_idx);
                     break;
                 }
